@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌸 Good Morning, Sweetheart! 🌸</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@500&display=swap" rel="stylesheet"> <!-- Cute Fonts -->
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #ffe4e9; /* Softer pink for body */
+            overflow: hidden;
+            text-align: center;
+            color: #333;
+            padding: 20px;
+        }
+        #container {
+            max-width: 600px;
+            margin: auto;
+            background: #ffccd5; /* Soft pink for letter background */
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.5s ease; /* Fade-in effect */
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        h1 {
+            font-family: 'Pacifico', cursive; /* Cursive font for title */
+            font-size: 36px;
+            color: #ff66b3; /* Light pink for title */
+            margin-bottom: 15px;
+        }
+        p {
+            font-size: 20px;
+            line-height: 1.5;
+            margin: 10px 0; /* Spacing for paragraphs */
+            color: #ff6680; /* Deeper pink for text */
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 22px;
+            cursor: pointer;
+            background-color: #ff66b3; /* Light pink button */
+            color: white; /* White text on button */
+            border: none;
+            border-radius: 10px;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin: 10px 10px;
+        }
+        button:hover {
+            background-color: #ffb3c1; /* Lighter pink on hover */
+            transform: scale(1.05); /* Slight scale effect */
+        }
+        #footer {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #ff99a6; /* Match footer text with title color */
+            font-weight: bold;
+        }
+        /* Hearts Animation */
+        .heart {
+            position: absolute;
+            top: -50px;
+            color: #ffb3c1; /* Light pink hearts */
+            font-size: 24px;
+            animation: float 5s linear infinite;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+        }
+        /* Volume Slider Styling */
+        #volumeControl {
+            width: 300px;
+            margin: 20px auto;
+            display: block;
+            height: 8px;
+            background-color: #ff66b3; /* Light pink slider line */
+            border-radius: 5px;
+            position: relative;
+        }
+        #volumeControl input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            background: none;
+            height: 8px;
+            margin: 0;
+        }
+        #volumeControl input[type="range"]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 8px;
+            background-color: #ff66b3;
+            border-radius: 5px;
+        }
+        #volumeControl input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background-color: #ffccd5; /* Soft pink thumb */
+            border-radius: 50%;
+            cursor: pointer;
+            margin-top: -4px; /* Center the thumb on the slider line */
+        }
+        #volumeControl input[type="range"]:focus {
+            outline: none; /* Remove the outline when focusing */
+        }
+        #volumeControl input[type="range"]::-moz-range-track {
+            width: 100%;
+            height: 8px;
+            background-color: #ff66b3;
+            border-radius: 5px;
+        }
+        #volumeControl input[type="range"]::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            background-color: #ffccd5; /* Soft pink thumb */
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <h1>🌸 Buenos días Mi Amor! 🌸</h1>
+        <p>¡Despierta!, el mundo está esperando tu hermosa sonrisa.! 🌍💖</p>
+        <p>Sólo quería recordarte lo increíblemente especial que eres para mí.! 🌈✨</p>
+        <p>Que tu día esté lleno de momentos mágicos y dulces sorpresas.! 🍭💕</p>
+        <p>Te mando una canasta de abrazos y besos para alegrarte el día.! 🥰🌸</p>
+        <p>CNo puedo esperar para crear más recuerdos hermosos contigo.! 😘❤️</p>
+    </div>
+
+    <button id="musicButton">🎶 haga clic aquí 🎶</button>
+
+    <!-- Volume Slider -->
+    <div id="volumeControl">
+        <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5">
+    </div>
+
+    <audio id="bgMusic">
+        <source src="José José - Buenos Dias Amor.mp3" type="audio/mpeg"> <!-- Replace with your audio file -->
+        Your browser does not support the audio tag.
+    </audio>
+
+    <div id="footer">Have a delightful day, my love! 💕</div>
+
+    <!-- Hearts Animation Script -->
+    <script>
+        const heartsContainer = document.body;
+        let heartCount = 0; // Keep track of the number of hearts
+        const maxHearts = 10; // Maximum number of hearts on screen
+
+        function createHeart() {
+            if (heartCount < maxHearts) { // Check if the limit is not reached
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤️'; // Heart emoji
+                heart.style.left = Math.random() * 100 + 'vw'; // Random horizontal position
+                heartsContainer.appendChild(heart);
+                
+                heartCount++; // Increase heart count
+
+                // Remove heart after animation completes and decrease count
+                heart.addEventListener('animationend', () => {
+                    heart.remove();
+                    heartCount--; // Decrease heart count
+                });
+            }
+        }
+
+        // Generate hearts every 1000 milliseconds (1 second)
+        setInterval(createHeart, 1000);
+
+        const musicButton = document.getElementById('musicButton');
+        const bgMusic = document.getElementById('bgMusic');
+        const volumeSlider = document.getElementById('volumeSlider');
+        let isPlaying = false;
+
+        musicButton.addEventListener('click', () => {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicButton.textContent = '🎶 haga clic aquí 🎶';
+            } else {
+                bgMusic.play();
+                musicButton.textContent = '🎶 Pausa  🎶';
+            }
+            isPlaying = !isPlaying;
+        });
+
+        // Set initial volume and update based on slider
+        bgMusic.volume = 0.5; // Default volume
+        volumeSlider.addEventListener('input', (e) => {
+            bgMusic.volume = e.target.value; // Update volume based on slider value
+        });
+    </script>
+</body>
+</html>
